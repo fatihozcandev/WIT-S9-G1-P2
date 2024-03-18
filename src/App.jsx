@@ -1,9 +1,10 @@
-import { useState } from 'react';
-import './app.css';
-import Task from './components/Task';
-import TaskHookForm from './components/TaskHookForm';
-import PeopleForm from './components/PeopleForm';
-import { initialTasks, initialTeam } from './data';
+import { useState } from "react";
+import "./app.css";
+import Task from "./components/Task";
+import TaskHookForm from "./components/TaskHookForm";
+import TaskForm from "./components/TaskForm";
+import PeopleForm from "./components/PeopleForm";
+import { initialTasks, initialTeam } from "./data";
 
 function App() {
   const [tasks, setTasks] = useState(initialTasks);
@@ -18,7 +19,7 @@ function App() {
   }
 
   function handleComplete(id) {
-    console.log('tamamlama fonksiyonunu buraya yazın');
+    console.log("tamamlama fonksiyonunu buraya yazın");
   }
 
   return (
@@ -40,7 +41,7 @@ function App() {
           <h2 className="column-title">Yapılacaklar</h2>
           <div className="column-list">
             {tasks
-              .filter((t) => t.status === 'yapılacak')
+              .filter((t) => t.status === "yapılacak")
               .map((t) => (
                 <Task key={t.id} taskObj={t} onComplete={handleComplete} />
               ))}
@@ -50,7 +51,7 @@ function App() {
           <h2 className="column-title">Tamamlananlar</h2>
           <div className="column-list">
             {tasks
-              .filter((t) => t.status === 'yapıldı')
+              .filter((t) => t.status === "yapıldı")
               .map((t) => (
                 <Task key={t.id} taskObj={t} />
               ))}
