@@ -75,7 +75,7 @@ const TaskHookForm = ({ kisiler, submitFn }) => {
   }
 
   // diğer form alanları değiştikçe çalışan ve yeni değeri state'e ekleyen fonksiyon
-  function handleOthersChange(e) {
+  /* function handleOthersChange(e) {
     const { name, value } = e.target;
     formAlaniniKontrolEt(name, value);
     setFormData({
@@ -83,20 +83,21 @@ const TaskHookForm = ({ kisiler, submitFn }) => {
       [name]: value,
     });
   }
-
+ */
   // task ekleme
-  function handleSubmitHandler(e) {
-    e.preventDefault();
+  function handleSubmitHandler(data) {
+    console.log(data);
+    // e.preventDefault();
     submitFn({
-      ...formData,
+      ...data,
       id: nanoid(5),
       status: "yapılacak",
     });
-    setFormData({
+    /* setFormData({
       title: "",
       description: "",
       people: [],
-    });
+    }); */
   }
 
   return (
@@ -108,10 +109,10 @@ const TaskHookForm = ({ kisiler, submitFn }) => {
         <input
           className="input-text"
           id="title"
-          name="title"
+          {...register("title")}
           type="text"
-          onChange={handleOthersChange}
-          value={formData.title}
+          //onChange={handleOthersChange}
+          //value={formData.title}
         />
         <p className="input-error">{formErrors.title}</p>
       </div>
@@ -123,9 +124,9 @@ const TaskHookForm = ({ kisiler, submitFn }) => {
           className="input-textarea"
           rows="3"
           id="description"
-          name="description"
-          onChange={handleOthersChange}
-          value={formData.description}
+          {...register("description")}
+          //onChange={handleOthersChange}
+          //value={formData.description}
         ></textarea>
         <p className="input-error">{formErrors.description}</p>
       </div>
@@ -136,10 +137,10 @@ const TaskHookForm = ({ kisiler, submitFn }) => {
             <label className="input-checkbox" key={p}>
               <input
                 type="checkbox"
-                name="people"
+                {...register("people")}
                 value={p}
-                onChange={handleCheckboxChange}
-                checked={formData.people.includes(p)}
+                //onChange={handleCheckboxChange}
+                //checked={formData.people.includes(p)}
               />
               {p}
             </label>
